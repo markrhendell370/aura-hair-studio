@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Hair & Perm | Premium Men's Salon & Queue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandGold: '#D4AF37',
+            brandGoldHover: '#B89428',
+            darkBg: '#0F1115',
+            darkCard: '#181B20',
+            darkBorder: '#2A2E37'
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans antialiased selection:bg-brandGold selection:text-black">
+
+  <div class="bg-black/60 border-b border-darkBorder py-2.5 text-xs text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center space-x-6">
+        <span>📍 742 Executive Tower, Metro District</span>
+        <span>📞 (02) 8899-AURA</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="text-brandGold font-semibold">⚡ Executive Queue Open Today</span>
+        <span>Mon - Sun: 10:00 AM - 8:00 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-darkBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-3">
+        <img src="/logo.png" alt="Aura Logo" class="h-12 w-auto filter drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]" onerror="this.src='https://via.placeholder.com/48?text=AURA'">
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-wider text-white block leading-none">AURA</span>
+          <span class="text-[10px] uppercase tracking-[0.25em] text-brandGold font-semibold">Hair & Perm Studio</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <a href="#booking-flow" class="hover:text-brandGold transition">Book Appointment</a>
+      </div>
+      <div class="flex items-center space-x-4" id="navAuthSection">
+        <a href="/login.html" class="text-sm font-medium hover:text-brandGold transition px-3 py-2">Sign In</a>
+        <a href="#booking-flow" class="bg-brandGold text-black font-semibold text-sm px-5 py-2.5 rounded hover:bg-brandGoldHover transition shadow-lg shadow-brandGold/10">Book Slot</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <div class="inline-flex items-center space-x-2 bg-brandGold/10 border border-brandGold/30 px-3 py-1 rounded-full text-brandGold text-xs font-semibold uppercase tracking-wider mb-6">
+        ★ Premium Men's Styling & Digital Perms
+      </div>
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+        ELEVATE YOUR <span class="text-brandGold italic">AURA.</span> MASTERFUL PRECISION.
+      </h1>
+      <p class="text-gray-400 text-base sm:text-lg leading-relaxed mb-8">
+        Experience bespoke grooming, signature Digital Perms, and custom color treatments tailored for the modern gentleman.
+      </p>
+      <a href="#booking-flow" class="inline-block bg-brandGold text-black font-semibold px-8 py-3.5 rounded-lg hover:bg-brandGoldHover transition shadow-xl shadow-brandGold/20">Start Booking Flow →</a>
+    </div>
+  </section>
+
+  <section id="booking-flow" class="py-16 bg-black/40 border-t border-darkBorder">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="font-serif text-3xl font-bold text-white">Book an Appointment</h2>
+        <p class="text-xs text-gray-400 mt-1">Select your service, preferred specialist, and choose a convenient time</p>
+      </div>
+
+      <div class="flex items-center justify-between max-w-xl mx-auto mb-10 text-xs font-semibold">
+        <div id="step-ind-1" class="flex flex-col items-center space-y-1 text-brandGold">
+          <div class="w-8 h-8 rounded-full border-2 border-brandGold flex items-center justify-center font-bold bg-brandGold/10">1</div>
+          <span>Service</span>
+        </div>
+        <div class="flex-1 h-[2px] bg-darkBorder mx-2"></div>
+
+        <div id="step-ind-2" class="flex flex-col items-center space-y-1 text-gray-500">
+          <div class="w-8 h-8 rounded-full border-2 border-darkBorder flex items-center justify-center font-bold">2</div>
+          <span>Staff</span>
+        </div>
+        <div class="flex-1 h-[2px] bg-darkBorder mx-2"></div>
+
+        <div id="step-ind-3" class="flex flex-col items-center space-y-1 text-gray-500">
+          <div class="w-8 h-8 rounded-full border-2 border-darkBorder flex items-center justify-center font-bold">3</div>
+          <span>Date & Time</span>
+        </div>
+        <div class="flex-1 h-[2px] bg-darkBorder mx-2"></div>
+
+        <div id="step-ind-4" class="flex flex-col items-center space-y-1 text-gray-500">
+          <div class="w-8 h-8 rounded-full border-2 border-darkBorder flex items-center justify-center font-bold">4</div>
+          <span>Confirm</span>
+        </div>
+      </div>
+
+      <div class="bg-darkCard border border-darkBorder rounded-xl p-6 md:p-8 shadow-2xl relative min-h-[420px]">
+        <div id="booking-step-1" class="space-y-6">
+          <h3 class="font-serif text-lg font-bold text-white mb-4">1. Choose Service & Hair Length</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase font-semibold text-gray-400 mb-2">Select Service</label>
+              <select id="flowService" onchange="recalculateFlowEstimate()" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:border-brandGold outline-none">
+                <option value="Executive Haircut">Executive Haircut (₱350)</option>
+                <option value="Digital Perm" selected>Digital Perm (₱2,000 - ₱6,000)</option>
+                <option value="Hair Color">Hair Color & Highlights (₱1,500 - ₱5,500)</option>
+                <option value="Rebonding">Hair Rebonding (₱2,500 - ₱5,500)</option>
+                <option value="Treatment">Scalp & Hair Treatment (₱950)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-semibold text-gray-400 mb-2">Hair Length</label>
+              <select id="flowLength" onchange="recalculateFlowEstimate()" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:border-brandGold outline-none">
+                <option value="Short">Short (Ear Level)</option>
+                <option value="Medium" selected>Medium (Chin Level)</option>
+                <option value="Long">Long (Shoulder Level)</option>
+                <option value="Extra Long">Extra Long (Below Shoulder)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-darkBg p-4 rounded-lg border border-darkBorder flex justify-between items-center text-sm">
+            <div>
+              <span class="text-xs text-gray-400 block">Estimated Price</span>
+              <span id="flowPrice" class="font-serif text-xl font-bold text-brandGold">₱3,000</span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-gray-400 block">Est. Duration</span>
+              <span id="flowDuration" class="text-white font-medium">120 mins (+15m cleanup)</span>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button onclick="goToStep(2)" class="bg-brandGold text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-yellow-500 transition text-sm">Continue to Staff →</button>
+          </div>
+        </div>
+
+        <div id="booking-step-2" class="space-y-6 hidden">
+          <h3 class="font-serif text-lg font-bold text-white mb-4">2. Select Preferred Specialist</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="staffOptions">
+            <div onclick="selectStaff('Master Barber Alex', this)" class="staff-card bg-darkBg border border-brandGold rounded-xl p-4 cursor-pointer text-center hover:border-brandGold transition">
+              <div class="w-16 h-16 rounded-full bg-darkBorder mx-auto mb-3 flex items-center justify-center font-bold text-brandGold text-xl">A</div>
+              <h4 class="font-semibold text-white text-sm">Alex Vance</h4>
+              <p class="text-[11px] text-brandGold">Master Perm Specialist</p>
+            </div>
+            <div onclick="selectStaff('Senior Stylist Ken', this)" class="staff-card bg-darkBg border border-darkBorder rounded-xl p-4 cursor-pointer text-center hover:border-brandGold transition">
+              <div class="w-16 h-16 rounded-full bg-darkBorder mx-auto mb-3 flex items-center justify-center font-bold text-gray-400 text-xl">K</div>
+              <h4 class="font-semibold text-white text-sm">Kenji Sato</h4>
+              <p class="text-[11px] text-gray-400">Senior Colorist</p>
+            </div>
+            <div onclick="selectStaff('Any Available Stylist', this)" class="staff-card bg-darkBg border border-darkBorder rounded-xl p-4 cursor-pointer text-center hover:border-brandGold transition">
+              <div class="w-16 h-16 rounded-full bg-darkBorder mx-auto mb-3 flex items-center justify-center font-bold text-gray-400 text-xl">⚡</div>
+              <h4 class="font-semibold text-white text-sm">Any Available</h4>
+              <p class="text-[11px] text-gray-400">First available slot</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button onclick="goToStep(1)" class="border border-darkBorder text-gray-400 font-semibold px-6 py-2.5 rounded-lg hover:text-white transition text-sm">← Back</button>
+            <button onclick="goToStep(3)" class="bg-brandGold text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-yellow-500 transition text-sm">Continue to Date & Time →</button>
+          </div>
+        </div>
+
+        <div id="booking-step-3" class="space-y-6 hidden">
+          <h3 class="font-serif text-lg font-bold text-white mb-2">3. Pick Date & Time</h3>
+          <div>
+            <label class="block text-xs uppercase font-semibold text-gray-400 mb-2">Select Date</label>
+            <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-none" id="datePickerCarousel"></div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase font-semibold text-gray-400 mb-2">Available Times</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="timeGrid"></div>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button onclick="goToStep(2)" class="border border-darkBorder text-gray-400 font-semibold px-6 py-2.5 rounded-lg hover:text-white transition text-sm">← Back</button>
+            <button onclick="goToStep(4)" class="bg-brandGold text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-yellow-500 transition text-sm">Review & Confirm →</button>
+          </div>
+        </div>
+
+        <div id="booking-step-4" class="space-y-6 hidden">
+          <h3 class="font-serif text-lg font-bold text-white mb-4">4. Confirm Appointment Details</h3>
+          <div class="bg-darkBg border border-darkBorder rounded-xl p-6 space-y-3 text-sm">
+            <div class="flex justify-between border-b border-darkBorder/60 pb-2">
+              <span class="text-gray-400">Service:</span>
+              <span id="summaryService" class="font-semibold text-white"></span>
+            </div>
+            <div class="flex justify-between border-b border-darkBorder/60 pb-2">
+              <span class="text-gray-400">Hair Length:</span>
+              <span id="summaryLength" class="text-white"></span>
+            </div>
+            <div class="flex justify-between border-b border-darkBorder/60 pb-2">
+              <span class="text-gray-400">Specialist:</span>
+              <span id="summaryStaff" class="text-brandGold font-semibold"></span>
+            </div>
+            <div class="flex justify-between border-b border-darkBorder/60 pb-2">
+              <span class="text-gray-400">Date & Start Time:</span>
+              <span id="summaryDateTime" class="text-white"></span>
+            </div>
+            <div class="flex justify-between pt-1">
+              <span class="text-gray-400">Total Price:</span>
+              <span id="summaryPrice" class="font-serif text-xl font-bold text-brandGold"></span>
+            </div>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button onclick="goToStep(3)" class="border border-darkBorder text-gray-400 font-semibold px-6 py-2.5 rounded-lg hover:text-white transition text-sm">← Back</button>
+            <button onclick="submitBooking()" class="bg-brandGold text-black font-semibold px-8 py-3 rounded-lg hover:bg-yellow-500 transition text-sm shadow-lg shadow-brandGold/20">Book Appointment Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let currentUser = null;
+    let bookingData = {
+      service: 'Digital Perm',
+      length: 'Medium',
+      staff: 'Master Barber Alex',
+      date: new Date().toISOString().split('T')[0],
+      time: '10:00',
+      price: 3000,
+      duration: 120
+    };
+
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (data.user) {
+          currentUser = data.user;
+          document.getElementById('navAuthSection').innerHTML = `
+            <a href="${currentUser.role === 'admin' ? '/admin.html' : '/dashboard.html'}" class="text-sm font-semibold text-brandGold hover:underline">Dashboard (${currentUser.name.split(' ')[0]})</a>
+            <button onclick="logout()" class="text-xs bg-darkBorder px-3 py-2 rounded text-gray-300 hover:text-white">Logout</button>
+          `;
+        }
+      } catch (e) {}
+    }
+
+    async function logout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.reload();
+    }
+
+    function goToStep(step) {
+      [1, 2, 3, 4].forEach(i => {
+        document.getElementById(`booking-step-${i}`).classList.add('hidden');
+        const ind = document.getElementById(`step-ind-${i}`);
+        if (i === step) {
+          ind.className = 'flex flex-col items-center space-y-1 text-brandGold';
+          ind.children[0].className = 'w-8 h-8 rounded-full border-2 border-brandGold flex items-center justify-center font-bold bg-brandGold/10';
+        } else if (i < step) {
+          ind.className = 'flex flex-col items-center space-y-1 text-white';
+          ind.children[0].className = 'w-8 h-8 rounded-full border-2 border-brandGold bg-brandGold text-black flex items-center justify-center font-bold';
+        } else {
+          ind.className = 'flex flex-col items-center space-y-1 text-gray-500';
+          ind.children[0].className = 'w-8 h-8 rounded-full border-2 border-darkBorder flex items-center justify-center font-bold';
+        }
+      });
+
+      document.getElementById(`booking-step-${step}`).classList.remove('hidden');
+
+      if (step === 3) renderDatePickerAndTimes();
+      if (step === 4) renderSummary();
+    }
+
+    function selectStaff(name, element) {
+      bookingData.staff = name;
+      document.querySelectorAll('.staff-card').forEach(c => {
+        c.classList.remove('border-brandGold');
+        c.classList.add('border-darkBorder');
+      });
+      element.classList.remove('border-darkBorder');
+      element.classList.add('border-brandGold');
+    }
+
+    async function recalculateFlowEstimate() {
+      bookingData.service = document.getElementById('flowService').value;
+      bookingData.length = document.getElementById('flowLength').value;
+
+      const res = await fetch('/api/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ service: bookingData.service, hairLength: bookingData.length })
+      });
+      const data = await res.json();
+      bookingData.price = data.price_php;
+      bookingData.duration = data.duration_minutes;
+
+      document.getElementById('flowPrice').innerText = `₱${data.price_php.toLocaleString()}`;
+      document.getElementById('flowDuration').innerText = `${data.duration_minutes} mins (+15m cleanup)`;
+    }
+
+    function renderDatePickerAndTimes() {
+      const container = document.getElementById('datePickerCarousel');
+      container.innerHTML = '';
+      const today = new Date();
+
+      for (let i = 0; i < 14; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+
+        const dayStr = d.toLocaleDateString('en-US', { weekday: 'short' });
+        const numStr = d.getDate();
+        const isoDate = d.toISOString().split('T')[0];
+        const isSelected = isoDate === bookingData.date;
+
+        const datePill = document.createElement('div');
+        datePill.className = `min-w-[65px] p-3 rounded-xl border text-center cursor-pointer transition ${
+          isSelected 
+            ? 'bg-brandGold text-black border-brandGold font-bold' 
+            : 'bg-darkBg text-gray-300 border-darkBorder hover:border-brandGold/50'
+        }`;
+        datePill.innerHTML = `
+          <div class="text-[10px] uppercase">${dayStr}</div>
+          <div class="text-lg font-bold">${numStr}</div>
+          ${i === 0 ? '<div class="text-[8px] uppercase tracking-tighter">Today</div>' : ''}
+        `;
+        datePill.onclick = () => {
+          bookingData.date = isoDate;
+          renderDatePickerAndTimes();
+        };
+        container.appendChild(datePill);
+      }
+
+      const timeGrid = document.getElementById('timeGrid');
+      const times = ['10:00', '10:30', '11:00', '11:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+      
+      timeGrid.innerHTML = times.map(t => {
+        const [h, m] = t.split(':');
+        const hourNum = parseInt(h, 10);
+        const displayTime = `${hourNum > 12 ? hourNum - 12 : hourNum}:${m} ${hourNum >= 12 ? 'PM' : 'AM'}`;
+        const isSelected = t === bookingData.time;
+
+        return `
+          <button onclick="bookingData.time='${t}'; renderDatePickerAndTimes();" class="py-2.5 px-3 rounded-lg border text-xs font-semibold transition ${
+            isSelected 
+              ? 'bg-brandGold text-black border-brandGold' 
+              : 'bg-darkBg text-gray-300 border-darkBorder hover:border-brandGold/50'
+          }">
+            ${displayTime}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderSummary() {
+      document.getElementById('summaryService').innerText = bookingData.service;
+      document.getElementById('summaryLength').innerText = bookingData.length;
+      document.getElementById('summaryStaff').innerText = bookingData.staff;
+      document.getElementById('summaryDateTime').innerText = `${bookingData.date} at ${bookingData.time}`;
+      document.getElementById('summaryPrice').innerText = `₱${bookingData.price.toLocaleString()}`;
+    }
+
+    async function submitBooking() {
+      if (!currentUser) {
+        window.location.href = '/login.html';
+        return;
+      }
+
+      const res = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_name: bookingData.service,
+          hair_length: bookingData.length,
+          appointment_date: bookingData.date,
+          start_time: bookingData.time,
+          stylist_name: bookingData.staff
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert('Appointment successfully booked!');
+        window.location.href = currentUser.role === 'admin' ? '/admin.html' : '/dashboard.html';
+      } else {
+        alert(data.error || 'Failed to book.');
+      }
+    }
+
+    checkAuth();
+    recalculateFlowEstimate();
+  </script>
+</body>
+</html>
