@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | Admin Authentication</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandGold: '#D4AF37', darkBg: '#0F1115', darkCard: '#181B20', darkBorder: '#2A2E37' },
+          fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans min-h-screen flex items-center justify-center p-4">
+
+  <div class="max-w-md w-full bg-darkCard border border-darkBorder rounded-xl p-8 shadow-2xl">
+    
+    <div class="text-center mb-6">
+      <div class="inline-block bg-gray-400/20 p-3 rounded-lg mb-3">
+        <span class="font-serif font-bold text-gray-400 tracking-widest text-xs">AURA</span>
+      </div>
+      <h1 class="font-serif text-2xl font-bold text-white uppercase tracking-wider">AURA MEN’S STUDIO</h1>
+      <p class="text-gray-400 text-xs mt-1">Sign in to manage your appointments and queue</p>
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="flex border-b border-darkBorder mb-6">
+      <button id="loginTabBtn" onclick="switchTab('login')" class="w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer">
+        Login
+      </button>
+      <button id="registerTabBtn" onclick="switchTab('register')" class="w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer">
+        Register
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
+        <input type="email" id="loginEmail" required placeholder="admin@aurahairstudio.com" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Password</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-3 rounded-lg transition duration-200 cursor-pointer">
+        Sign In
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 hidden">
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
+        <input type="text" id="regName" required placeholder="Mark Smith" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
+        <input type="email" id="regEmail" required placeholder="admin@aurahairstudio.com" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Password</label>
+        <input type="password" id="regPassword" required placeholder="••••••••" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-3 rounded-lg transition duration-200 cursor-pointer">
+        Create Account
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a href="index.html" class="text-xs text-gray-400 hover:text-brandGold transition">← Back to Main Studio</a>
+    </div>
+
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
+      authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
+      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      projectId: "aura-hair-studio-a13e1",
+      storageBucket: "aura-hair-studio-a13e1.firebasestorage.app",
+      messagingSenderId: "72075304715",
+      appId: "1:72075304715:web:ded49e67b0844e52b60c0e"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function switchTab(tab) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const loginTabBtn = document.getElementById('loginTabBtn');
+      const registerTabBtn = document.getElementById('registerTabBtn');
+
+      if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        loginTabBtn.className = "w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer";
+        registerTabBtn.className = "w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer";
+      } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        registerTabBtn.className = "w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer";
+        loginTabBtn.className = "w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer";
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = 'admin.html';
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Account created successfully!");
+          window.location.href = 'admin.html';
+        })
+        .catch((error) => {
+          alert("Registration failed: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | Hair & Perm Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandGold: '#D4AF37', darkBg: '#0F1115', darkCard: '#181B20', darkBorder: '#2A2E37' },
+          fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans min-h-screen">
+
+  <!-- Navigation Bar -->
+  <nav class="border-b border-darkBorder bg-darkCard/50 backdrop-blur-md sticky top-0 z-50 py-4 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Aura Logo" class="h-10 onerror-placeholder" onerror="this.src='https://via.placeholder.com/40?text=AURA'">
+        <span class="font-serif text-xl font-bold tracking-widest text-white">AURA HAIR STUDIO</span>
+      </div>
+      <div class="space-x-4">
+        <a href="login.html" class="text-sm font-medium hover:text-brandGold transition">Login / Account</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Booking Calculator -->
+  <main class="max-w-4xl mx-auto py-12 px-4">
+    <div class="text-center mb-10">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-3">Luxe Grooming & Perm Architecture</h1>
+      <p class="text-gray-400">Select your services, calculate your custom price, and join the queue.</p>
+    </div>
+
+    <div class="bg-darkCard border border-darkBorder rounded-xl p-6 md:p-8 shadow-2xl">
+      <h2 class="font-serif text-2xl font-bold text-brandGold mb-6 border-b border-darkBorder pb-3">Interactive Service Calculator</h2>
+      
+      <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-300">Select Primary Service</label>
+          <select id="serviceSelect" onchange="calculateTotal()" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white focus:border-brandGold outline-none">
+            <option value="50">Signature Haircut - $50</option>
+            <option value="120">Digital Texture Perm - $120</option>
+            <option value="150">Down Perm + Signature Cut - $150</option>
+            <option value="90">Custom Color & Tonal Polish - $90</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-300">Add-On Enhancements</label>
+          <div class="space-y-2">
+            <label class="flex items-center space-x-3 bg-darkBg p-3 rounded-lg border border-darkBorder cursor-pointer">
+              <input type="checkbox" value="25" onchange="calculateTotal()" class="addon-check accent-brandGold">
+              <span>Scalp Treatment & Massage (+ $25)</span>
+            </label>
+            <label class="flex items-center space-x-3 bg-darkBg p-3 rounded-lg border border-darkBorder cursor-pointer">
+              <input type="checkbox" value="30" onchange="calculateTotal()" class="addon-check accent-brandGold">
+              <span>Keratin Hair Repair Mask (+ $30)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="bg-darkBg/60 border border-darkBorder p-4 rounded-lg flex justify-between items-center">
+          <span class="text-gray-400 font-medium">Estimated Total:</span>
+          <span id="totalPriceDisplay" class="font-serif text-3xl font-bold text-brandGold">$50</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-darkBorder">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
+            <input type="text" id="custName" required placeholder="John Doe" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Phone Number</label>
+            <input type="tel" id="custPhone" required placeholder="(555) 000-0000" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-4 rounded-lg transition duration-200 cursor-pointer">
+          Confirm Appointment & Join Queue
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Replace with your actual Firebase Configuration object
+    const firebaseConfig = {
+      apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
+      authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
+      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      projectId: "aura-hair-studio-a13e1",
+      storageBucket: "Yaura-hair-studio-a13e1.firebasestorage.app",
+      messagingSenderId: "72075304715",
+      appId: "1:72075304715:web:ded49e67b0844e52b60c0e"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    function calculateTotal() {
+      let base = parseFloat(document.getElementById('serviceSelect').value);
+      let addons = document.querySelectorAll('.addon-check:checked');
+      let total = base;
+      addons.forEach(cb => total += parseFloat(cb.value));
+      document.getElementById('totalPriceDisplay').innerText = '$' + total;
+    }
+
+    function handleBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const serviceSelect = document.getElementById('serviceSelect');
+      const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text.split(' - ')[0];
+      const total = document.getElementById('totalPriceDisplay').innerText;
+
+      const newBooking = {
+        name: name,
+        phone: phone,
+        service: serviceText,
+        price: total,
+        status: 'Waiting',
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      const newRef = database.ref('queue').push();
+      newRef.set(newBooking).then(() => {
+        localStorage.setItem('aura_current_id', newRef.key);
+        window.location.href = 'dashboard.html';
+      }).catch(error => {
+        alert("Error booking appointment: " + error.message);
+      });
+    }
+  </script>
+</body>
+</html>
