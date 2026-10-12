@@ -1,149 +1,260 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA | Admin Authentication</title>
+  <meta name="theme-color" content="#0F1115">
+
+  <title>Login | AURA Hair Studio</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { brandGold: '#D4AF37', darkBg: '#0F1115', darkCard: '#181B20', darkBorder: '#2A2E37' },
-          fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'] }
+          colors: {
+            brandGold: '#D4AF37',
+            darkBg: '#0F1115',
+            darkCard: '#181B20',
+            darkBorder: '#2A2E37'
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
         }
       }
-    }
+    };
   </script>
 </head>
-<body class="bg-darkBg text-gray-200 font-sans min-h-screen flex items-center justify-center p-4">
 
-  <div class="max-w-md w-full bg-darkCard border border-darkBorder rounded-xl p-8 shadow-2xl">
-    
-    <div class="text-center mb-6">
-      <div class="inline-block bg-gray-400/20 p-3 rounded-lg mb-3">
-        <span class="font-serif font-bold text-gray-400 tracking-widest text-xs">AURA</span>
-      </div>
-      <h1 class="font-serif text-2xl font-bold text-white uppercase tracking-wider">AURA MEN’S STUDIO</h1>
-      <p class="text-gray-400 text-xs mt-1">Sign in to manage your appointments and queue</p>
+<body class="min-h-screen bg-darkBg text-gray-200 font-sans">
+
+  <!-- Navigation -->
+  <nav class="border-b border-darkBorder bg-darkCard/80 px-5 py-4">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4">
+
+      <a
+        href="/aura-hair-studio/"
+        class="font-serif text-lg font-bold tracking-widest text-white sm:text-xl"
+      >
+        AURA HAIR STUDIO
+      </a>
+
+      <a
+        href="/aura-hair-studio/"
+        class="text-sm text-gray-400 transition hover:text-brandGold"
+      >
+        Back to Home
+      </a>
+
     </div>
+  </nav>
 
-    <!-- Tab Buttons -->
-    <div class="flex border-b border-darkBorder mb-6">
-      <button id="loginTabBtn" onclick="switchTab('login')" class="w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer">
-        Login
-      </button>
-      <button id="registerTabBtn" onclick="switchTab('register')" class="w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer">
-        Register
-      </button>
-    </div>
+  <!-- Login Section -->
+  <main class="flex min-h-[85vh] items-center justify-center px-4 py-12">
 
-    <!-- Login Form -->
-    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
-      <div>
-        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
-        <input type="email" id="loginEmail" required placeholder="admin@aurahairstudio.com" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+    <section class="w-full max-w-md rounded-2xl border border-darkBorder bg-darkCard p-6 shadow-2xl sm:p-9">
+
+      <div class="mb-8 text-center">
+
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-brandGold/50 bg-darkBg">
+          <span class="font-serif text-3xl font-bold text-brandGold">A</span>
+        </div>
+
+        <h1 class="font-serif text-3xl font-bold tracking-wide text-white">
+          Welcome Back
+        </h1>
+
+        <p class="mt-3 text-sm text-gray-400">
+          Sign in to manage your AURA appointments.
+        </p>
+
       </div>
-      <div>
-        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Password</label>
-        <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
-      </div>
-      <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-3 rounded-lg transition duration-200 cursor-pointer">
-        Sign In
-      </button>
-    </form>
 
-    <!-- Register Form -->
-    <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 hidden">
-      <div>
-        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
-        <input type="text" id="regName" required placeholder="Mark Smith" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
-      </div>
-      <div>
-        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
-        <input type="email" id="regEmail" required placeholder="admin@aurahairstudio.com" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
-      </div>
-      <div>
-        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Password</label>
-        <input type="password" id="regPassword" required placeholder="••••••••" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
-      </div>
-      <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-3 rounded-lg transition duration-200 cursor-pointer">
-        Create Account
-      </button>
-    </form>
+      <form id="loginForm" class="space-y-5">
 
-    <div class="mt-6 text-center">
-      <a href="index.html" class="text-xs text-gray-400 hover:text-brandGold transition">← Back to Main Studio</a>
-    </div>
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium text-gray-300">
+            Email Address
+          </label>
 
-  </div>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="you@example.com"
+            required
+            class="w-full rounded-lg border border-darkBorder bg-darkBg px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-brandGold"
+          >
+        </div>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <div>
+          <label for="password" class="mb-2 block text-sm font-medium text-gray-300">
+            Password
+          </label>
+
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required
+            class="w-full rounded-lg border border-darkBorder bg-darkBg px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-brandGold"
+          >
+        </div>
+
+        <p
+          id="loginMessage"
+          role="status"
+          aria-live="polite"
+          class="hidden text-sm"
+        ></p>
+
+        <button
+          id="loginButton"
+          type="submit"
+          class="w-full rounded-lg bg-brandGold py-3.5 font-semibold text-black transition hover:bg-yellow-500 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Sign In
+        </button>
+
+      </form>
+
+      <div class="my-7 border-t border-darkBorder"></div>
+
+      <p class="text-center text-sm text-gray-400">
+        Don't have an account?
+        <a
+          href="/aura-hair-studio/register.html"
+          class="font-medium text-brandGold hover:underline"
+        >
+          Create Account
+        </a>
+      </p>
+
+      <p class="mt-6 text-center text-xs leading-5 text-gray-500">
+        Your account and appointment information should only be accessed
+        through the secure AURA authentication service.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer class="border-t border-darkBorder px-4 py-5 text-center text-xs text-gray-500">
+    &copy; <span id="year"></span> AURA Hair Studio. All rights reserved.
+  </footer>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
-      authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
-      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
-      projectId: "aura-hair-studio-a13e1",
-      storageBucket: "aura-hair-studio-a13e1.firebasestorage.app",
-      messagingSenderId: "72075304715",
-      appId: "1:72075304715:web:ded49e67b0844e52b60c0e"
-    };
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    const loginForm = document.getElementById('loginForm');
+    const loginButton = document.getElementById('loginButton');
+    const loginMessage = document.getElementById('loginMessage');
 
-    function switchTab(tab) {
-      const loginForm = document.getElementById('loginForm');
-      const registerForm = document.getElementById('registerForm');
-      const loginTabBtn = document.getElementById('loginTabBtn');
-      const registerTabBtn = document.getElementById('registerTabBtn');
+    function showMessage(message, success = false) {
+      loginMessage.textContent = message;
+      loginMessage.classList.remove(
+        'hidden',
+        'text-red-400',
+        'text-green-400'
+      );
+      loginMessage.classList.add(
+        success ? 'text-green-400' : 'text-red-400'
+      );
+    }
 
-      if (tab === 'login') {
-        loginForm.classList.remove('hidden');
-        registerForm.classList.add('hidden');
-        loginTabBtn.className = "w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer";
-        registerTabBtn.className = "w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer";
-      } else {
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-        registerTabBtn.className = "w-1/2 py-2 text-center font-semibold text-brandGold border-b-2 border-brandGold transition cursor-pointer";
-        loginTabBtn.className = "w-1/2 py-2 text-center font-semibold text-gray-400 hover:text-white transition cursor-pointer";
+    loginForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      loginButton.disabled = true;
+      loginButton.textContent = 'Signing in...';
+
+      /*
+       * Local development:
+       * Uses the existing Express server at localhost:3000.
+       *
+       * Live deployment:
+       * Replace this URL with your deployed HTTPS backend URL.
+       * Do not use localhost for the live website.
+       */
+      const isLocal = ['localhost', '127.0.0.1'].includes(
+        window.location.hostname
+      );
+
+      const apiBase = isLocal
+        ? window.location.origin
+        : 'YOUR_DEPLOYED_BACKEND_URL';
+
+      if (apiBase === 'YOUR_DEPLOYED_BACKEND_URL') {
+        showMessage(
+          'Online sign-in is not configured yet. Please use the configured website login service.'
+        );
+        loginButton.disabled = false;
+        loginButton.textContent = 'Sign In';
+        return;
       }
-    }
 
-    function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = 'admin.html';
-        })
-        .catch((error) => {
-          alert("Login failed: " + error.message);
+      try {
+        const response = await fetch(`${apiBase}/api/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email: document.getElementById('email').value.trim(),
+            password: document.getElementById('password').value
+          })
         });
-    }
 
-    function handleRegister(e) {
-      e.preventDefault();
-      const email = document.getElementById('regEmail').value;
-      const password = document.getElementById('regPassword').value;
+        const result = await response.json().catch(() => ({}));
 
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Account created successfully!");
-          window.location.href = 'admin.html';
-        })
-        .catch((error) => {
-          alert("Registration failed: " + error.message);
-        });
-    }
+        if (!response.ok) {
+          throw new Error(
+            result.error || result.message || 'Login failed. Check your credentials.'
+          );
+        }
+
+        showMessage('Login successful. Redirecting...', true);
+
+        /*
+         * These destinations must match the routes in your backend.
+         * Adjust them if your existing server uses different routes.
+         */
+        const role = result.user?.role || result.role;
+
+        if (role === 'admin') {
+          window.location.href = '/aura-hair-studio/admin.html';
+        } else {
+          window.location.href = '/aura-hair-studio/dashboard.html';
+        }
+
+      } catch (error) {
+        console.error('Login error:', error);
+
+        showMessage(
+          error.message || 'Unable to connect to the login service.'
+        );
+
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = 'Sign In';
+      }
+    });
   </script>
+
 </body>
 </html>
+```
