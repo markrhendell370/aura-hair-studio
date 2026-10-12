@@ -27,8 +27,9 @@
         <span class="text-xs uppercase tracking-widest text-gray-400 hidden sm:inline">Hair & Perm Studio</span>
       </div>
       <div class="space-x-4 flex items-center text-sm">
-        <a href="#styles" class="hover:text-brandGold transition">Styles</a>
+        <a href="#styles" class="hover:text-brandGold transition">Styles Catalog</a>
         <a href="#booking" class="bg-brandGold text-black font-semibold px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Book Now</a>
+        <a href="login.html" class="border border-darkBorder px-3 py-1.5 rounded-lg text-xs text-gray-300 hover:text-white transition">Login</a>
       </div>
     </div>
   </nav>
@@ -142,11 +143,11 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <script>
-    // 1. Firebase Initialization with your exact credentials
+    // 1. Fixed Firebase Initialization
     const firebaseConfig = {
       apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
       authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
-      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "aura-hair-studio-a13e1",
       storageBucket: "aura-hair-studio-a13e1.firebasestorage.app",
       messagingSenderId: "72075304715",
@@ -157,7 +158,7 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // 2. Data Lists for Styles
+    // 2. Full Catalog Data Lists
     const styleData = {
       cuts: [
         "Two-Block Cut", "Textured Crop", "Wolf Cut", "Layered Cut", "Butterfly Cut",
@@ -180,7 +181,6 @@
     let selectedTimeSlot = "10:00 AM";
     let bookedSlots = ["11:30 AM", "02:00 PM"];
 
-    // Render Style Grid
     function switchStyleTab(tabKey) {
       ['cuts', 'perms', 'colors'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
@@ -203,7 +203,6 @@
       `).join('');
     }
 
-    // Pricing & Duration Logic
     function calculateEstimate() {
       const service = document.getElementById('serviceSelect').value;
       const length = document.getElementById('lengthSelect').value;
@@ -246,7 +245,6 @@
       document.getElementById('durationDisplay').innerText = `${duration} mins (+15m cleanup = ${duration + 15} mins)`;
     }
 
-    // Render Time Slot Matrix Grid
     function renderTimeSlots() {
       const slots = [
         "09:00 AM", "10:00 AM", "11:00 AM", "11:30 AM", 
@@ -284,7 +282,6 @@
       renderTimeSlots();
     }
 
-    // Handle Form Submission to Firebase Realtime Database
     function handleBooking(e) {
       e.preventDefault();
       const name = document.getElementById('clientName').value.trim();
@@ -300,21 +297,24 @@
       }
 
       const bookingRecord = {
-        clientName: name,
-        contact: contact,
+        name: name,
+        phone: contact,
         service: service,
         length: length,
         date: date,
         timeSlot: selectedTimeSlot,
         price: price,
-        status: 'Pending',
-        created_at: new Date().toISOString()
+        status: 'Waiting',
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
-      database.ref('appointments').push().set(bookingRecord).then(() => {
+      const newRef = database.ref('queue').push();
+      newRef.set(bookingRecord).then(() => {
+        localStorage.setItem('aura_current_id', newRef.key);
         alert(`Appointment booked successfully for ${name} on ${date} at ${selectedTimeSlot}!`);
         bookedSlots.push(selectedTimeSlot);
         renderTimeSlots();
+        window.location.href = 'dashboard.html';
       }).catch(err => alert("Error saving appointment: " + err.message));
     }
 
