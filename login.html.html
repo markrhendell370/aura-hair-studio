@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | Admin & User Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brandGold: '#D4AF37', darkBg: '#0F1115', darkCard: '#181B20', darkBorder: '#2A2E37' },
+          fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans min-h-screen flex items-center justify-center p-4">
+
+  <div class="max-w-md w-full bg-darkCard border border-darkBorder rounded-xl p-8 shadow-2xl">
+    <div class="text-center mb-6">
+      <h1 class="font-serif text-2xl font-bold text-white tracking-wider">AURA HAIR STUDIO</h1>
+      <p class="text-gray-400 text-xs mt-1">Sign in as Admin or Customer</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
+        <input type="email" id="loginEmail" required placeholder="admin@aurahairstudio.com" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Password</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+      </div>
+      <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-3 rounded-lg transition duration-200 cursor-pointer">
+        Sign In
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a href="index.html" class="text-xs text-gray-400 hover:text-brandGold transition">← Back to Main Studio</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
+      authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
+      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      projectId: "aura-hair-studio-a13e1",
+      storageBucket: "aura-hair-studio-a13e1.firebasestorage.app",
+      messagingSenderId: "72075304715",
+      appId: "1:72075304715:web:ded49e67b0844e52b60c0e"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = 'admin.html';
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>
