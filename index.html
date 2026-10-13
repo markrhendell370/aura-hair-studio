@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA | Hair & Perm Studio</title>
+  <title>Aura Hair & Perm | Salon Booking & Style Catalog</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -18,23 +18,23 @@
   </script>
 </head>
 <body class="bg-darkBg text-gray-200 font-sans min-h-screen">
-  
-  <!-- Navigation -->
-  <nav class="border-b border-darkBorder bg-darkCard/50 backdrop-blur-md sticky top-0 z-50 py-4 px-6">
+
+  <!-- Header -->
+  <nav class="border-b border-darkBorder bg-darkCard/80 backdrop-blur-md sticky top-0 z-50 py-4 px-6">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <img src="logo.png" alt="Aura Logo" class="h-10 onerror-placeholder" onerror="this.src='https://via.placeholder.com/40?text=AURA'">
-        <span class="font-serif text-xl font-bold tracking-widest text-white">AURA HAIR STUDIO</span>
+        <span class="font-serif text-2xl font-bold tracking-widest text-brandGold">AURA</span>
+        <span class="text-xs uppercase tracking-widest text-gray-400 hidden sm:inline">Hair & Perm Studio</span>
       </div>
-      <div class="space-x-4">
-        <a href="#styles" class="hover:text-brandGold transition text-sm">Styles Catalog</a>
-        <a href="#bookingForm" class="bg-brandGold text-black font-semibold px-4 py-2 rounded hover:bg-yellow-500 transition text-sm">Book Now</a>
-        <a href="login.html" class="text-sm font-medium hover:text-brandGold transition border border-darkBorder px-3 py-1.5 rounded-lg text-xs">Login / Account</a>
+      <div class="space-x-4 flex items-center text-sm">
+        <a href="#styles" class="hover:text-brandGold transition">Styles Catalog</a>
+        <a href="#booking" class="bg-brandGold text-black font-semibold px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Book Now</a>
+        <a href="login.html" class="border border-darkBorder px-3 py-1.5 rounded-lg text-xs text-gray-300 hover:text-white transition">Login</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero & Intro -->
+  <!-- Hero Section -->
   <header class="py-12 px-4 text-center max-w-4xl mx-auto">
     <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Aura Hair & Perm</h1>
     <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
@@ -42,7 +42,7 @@
     </p>
   </header>
 
-  <!-- Visual Hair Styles & Catalog Showcase -->
+  <!-- Section 1: Visual Hair Styles & Catalog Showcase -->
   <section id="styles" class="max-w-7xl mx-auto py-8 px-4">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
       <div>
@@ -62,58 +62,81 @@
     <div id="catalogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
   </section>
 
-  <!-- Main Booking Calculator -->
-  <main class="max-w-4xl mx-auto py-12 px-4 border-t border-darkBorder">
+  <!-- Section 2: Interactive Pricing & Slot Availability Booking System -->
+  <section id="booking" class="max-w-4xl mx-auto py-12 px-4">
     <div class="bg-darkCard border border-darkBorder rounded-xl p-6 md:p-8 shadow-2xl">
-      <h2 class="font-serif text-2xl font-bold text-brandGold mb-6 border-b border-darkBorder pb-3">Interactive Service Calculator</h2>
-      
-      <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-6">
-        <div>
-          <label class="block text-sm font-medium mb-2 text-gray-300">Select Primary Service</label>
-          <select id="serviceSelect" onchange="calculateTotal()" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white focus:border-brandGold outline-none cursor-pointer">
-            <option value="50">Signature Haircut - $50</option>
-            <option value="120">Digital Texture Perm - $120</option>
-            <option value="150">Down Perm + Signature Cut - $150</option>
-            <option value="90">Custom Color & Tonal Polish - $90</option>
-          </select>
-        </div>
+      <h2 class="font-serif text-2xl font-bold text-brandGold mb-2">Book an Appointment</h2>
+      <p class="text-xs text-gray-400 mb-6 border-b border-darkBorder pb-4">Select service and length to calculate price, check time slot availability, and submit booking.</p>
 
-        <div>
-          <label class="block text-sm font-medium mb-2 text-gray-300">Add-On Enhancements</label>
-          <div class="space-y-2">
-            <label class="flex items-center space-x-3 bg-darkBg p-3 rounded-lg border border-darkBorder cursor-pointer">
-              <input type="checkbox" value="25" onchange="calculateTotal()" class="addon-check accent-brandGold w-4 h-4">
-              <span>Scalp Treatment & Massage (+ $25)</span>
-            </label>
-            <label class="flex items-center space-x-3 bg-darkBg p-3 rounded-lg border border-darkBorder cursor-pointer">
-              <input type="checkbox" value="30" onchange="calculateTotal()" class="addon-check accent-brandGold w-4 h-4">
-              <span>Keratin Hair Repair Mask (+ $30)</span>
-            </label>
+      <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-6">
+        
+        <!-- Service & Length -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Select Service</label>
+            <select id="serviceSelect" onchange="calculateEstimate()" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white text-sm focus:border-brandGold outline-none">
+              <option value="Haircut">Haircut (₱350)</option>
+              <option value="Digital Perm" selected>Digital Perm (₱2,000 - ₱6,000)</option>
+              <option value="Hair Color">Hair Color (₱1,500 - ₱5,500)</option>
+              <option value="Rebonding">Rebonding (₱2,500 - ₱5,500)</option>
+              <option value="Treatment">Treatment (₱950)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Hair Length</label>
+            <select id="lengthSelect" onchange="calculateEstimate()" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white text-sm focus:border-brandGold outline-none">
+              <option value="Short">Short (Ear Level)</option>
+              <option value="Medium" selected>Medium (Chin Level)</option>
+              <option value="Long">Long (Shoulder Level)</option>
+              <option value="Extra Long">Extra Long (Below Shoulder)</option>
+            </select>
           </div>
         </div>
 
-        <div class="bg-darkBg/60 border border-darkBorder p-4 rounded-lg flex justify-between items-center">
-          <span class="text-gray-400 font-medium">Estimated Total:</span>
-          <span id="totalPriceDisplay" class="font-serif text-3xl font-bold text-brandGold">$50</span>
+        <!-- Price & Time Calculation Banner -->
+        <div class="bg-darkBg p-4 rounded-lg border border-darkBorder flex flex-wrap justify-between items-center text-sm gap-2">
+          <div>
+            <span class="text-xs text-gray-400 block">Calculated Price</span>
+            <span id="priceDisplay" class="font-serif text-2xl font-bold text-brandGold">₱3,000</span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-gray-400 block">Est. Duration (+15m Buffer)</span>
+            <span id="durationDisplay" class="text-white font-medium">120 mins (+15m cleanup = 135 mins)</span>
+          </div>
         </div>
 
+        <!-- Date Selection -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Select Date</label>
+          <input type="date" id="appointmentDate" required onchange="renderTimeSlots()" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white text-sm focus:border-brandGold outline-none">
+        </div>
+
+        <!-- Available & Unavailable Time Slots Matrix -->
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Select Time Slot</label>
+          <p class="text-[11px] text-gray-500 mb-3">Slots marked with <span class="text-red-400 font-bold">Unavailable</span> are already booked.</p>
+          <div id="timeSlotsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
+        </div>
+
+        <!-- Client Information -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-darkBorder">
           <div>
             <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Full Name</label>
-            <input type="text" id="custName" required placeholder="John Doe" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+            <input type="text" id="clientName" required placeholder="John Doe" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white text-sm outline-none focus:border-brandGold">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Phone Number</label>
-            <input type="tel" id="custPhone" required placeholder="(555) 000-0000" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white outline-none focus:border-brandGold">
+            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Email / Phone</label>
+            <input type="text" id="clientContact" required placeholder="john@example.com / 09170000000" class="w-full bg-darkBg border border-darkBorder rounded-lg p-3 text-white text-sm outline-none focus:border-brandGold">
           </div>
         </div>
 
-        <button type="submit" class="w-full bg-brandGold hover:bg-yellow-600 text-black font-bold py-4 rounded-lg transition duration-200 cursor-pointer">
-          Confirm Appointment & Join Queue
+        <button type="submit" class="w-full bg-brandGold hover:bg-yellow-500 text-black font-bold py-3.5 rounded-lg transition duration-200 cursor-pointer text-sm">
+          Confirm & Join Appointment Queue
         </button>
       </form>
     </div>
-  </main>
+  </section>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -123,7 +146,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
       authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
-      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      databaseURL: "https://aura-hair-studio-a13e1-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "aura-hair-studio-a13e1",
       storageBucket: "aura-hair-studio-a13e1.firebasestorage.app",
       messagingSenderId: "72075304715",
@@ -134,6 +157,7 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
+    // 15 Haircuts, 15 Perms, 20 Hair Colors mapped to local repository image paths
     const styleData = {
       cuts: [
         { name: "Two-Block Cut", img: "images/two-block.jpg" },
@@ -193,6 +217,9 @@
       ]
     };
 
+    let selectedTimeSlot = "10:00 AM";
+    let bookedSlots = ["11:30 AM", "02:00 PM"];
+
     function switchStyleTab(tabKey) {
       ['cuts', 'perms', 'colors'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
@@ -220,56 +247,126 @@
       `).join('');
     }
 
-    function calculateTotal() {
-      const baseSelect = document.getElementById('serviceSelect');
-      let basePrice = parseFloat(baseSelect.value) || 0;
-      let addonCheckboxes = document.querySelectorAll('.addon-check');
-      
-      let addonTotal = 0;
-      addonCheckboxes.forEach(cb => {
-        if (cb.checked) {
-          addonTotal += parseFloat(cb.value) || 0;
-        }
-      });
+    function calculateEstimate() {
+      const service = document.getElementById('serviceSelect').value;
+      const length = document.getElementById('lengthSelect').value;
+      let price = 0;
+      let duration = 0;
 
-      let finalTotal = basePrice + addonTotal;
-      document.getElementById('totalPriceDisplay').innerText = '$' + finalTotal;
+      switch (service) {
+        case 'Haircut':
+          price = 350;
+          duration = 30;
+          break;
+        case 'Digital Perm':
+          if (length === 'Short') price = 2000;
+          else if (length === 'Medium') price = 3000;
+          else if (length === 'Long') price = 4500;
+          else if (length === 'Extra Long') price = 6000;
+          duration = (length === 'Short' || length === 'Medium') ? 120 : (length === 'Long' ? 180 : 240);
+          break;
+        case 'Hair Color':
+          if (length === 'Short') price = 1500;
+          else if (length === 'Medium') price = 2500;
+          else if (length === 'Long') price = 4000;
+          else if (length === 'Extra Long') price = 5500;
+          duration = (length === 'Short' || length === 'Medium') ? 90 : 150;
+          break;
+        case 'Rebonding':
+          if (length === 'Short') price = 2500;
+          else if (length === 'Medium') price = 3500;
+          else if (length === 'Long') price = 4500;
+          else if (length === 'Extra Long') price = 5500;
+          duration = (length === 'Short' || length === 'Medium') ? 150 : 210;
+          break;
+        case 'Treatment':
+          price = 950;
+          duration = 60;
+          break;
+      }
+
+      document.getElementById('priceDisplay').innerText = `₱${price.toLocaleString()}`;
+      document.getElementById('durationDisplay').innerText = `${duration} mins (+15m cleanup = ${duration + 15} mins)`;
+    }
+
+    function renderTimeSlots() {
+      const slots = [
+        "09:00 AM", "10:00 AM", "11:00 AM", "11:30 AM", 
+        "01:00 PM", "02:00 PM", "03:00 PM", "04:30 PM"
+      ];
+
+      const grid = document.getElementById('timeSlotsGrid');
+      grid.innerHTML = slots.map(slot => {
+        const isUnavailable = bookedSlots.includes(slot);
+        const isSelected = slot === selectedTimeSlot;
+
+        if (isUnavailable) {
+          return `
+            <div class="py-2.5 px-3 rounded-lg bg-darkBg/40 border border-darkBorder/40 text-center cursor-not-allowed opacity-50">
+              <span class="block text-xs text-gray-500 line-through">${slot}</span>
+              <span class="text-[9px] uppercase font-bold text-red-400">Unavailable</span>
+            </div>
+          `;
+        }
+
+        return `
+          <button type="button" onclick="selectSlot('${slot}')" class="py-2.5 px-3 rounded-lg border text-xs font-semibold transition cursor-pointer ${
+            isSelected 
+              ? 'bg-brandGold text-black border-brandGold font-bold shadow-lg shadow-brandGold/20' 
+              : 'bg-darkBg text-gray-300 border-darkBorder hover:border-brandGold/50'
+          }">
+            ${slot}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectSlot(slot) {
+      selectedTimeSlot = slot;
+      renderTimeSlots();
     }
 
     function handleBooking(e) {
       e.preventDefault();
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const serviceSelect = document.getElementById('serviceSelect');
-      const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text.split(' - ')[0];
-      const total = document.getElementById('totalPriceDisplay').innerText;
+      const name = document.getElementById('clientName').value.trim();
+      const contact = document.getElementById('clientContact').value.trim();
+      const service = document.getElementById('serviceSelect').value;
+      const length = document.getElementById('lengthSelect').value;
+      const date = document.getElementById('appointmentDate').value;
+      const price = document.getElementById('priceDisplay').innerText;
 
-      if (!name || !phone) {
-        alert("Please fill in your name and phone number.");
+      if (!date) {
+        alert("Please select an appointment date.");
         return;
       }
 
-      const newBooking = {
+      const bookingRecord = {
         name: name,
-        phone: phone,
-        service: serviceText,
-        price: total,
+        phone: contact,
+        service: service,
+        length: length,
+        date: date,
+        timeSlot: selectedTimeSlot,
+        price: price,
         status: 'Waiting',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
       const newRef = database.ref('queue').push();
-      newRef.set(newBooking).then(() => {
+      newRef.set(bookingRecord).then(() => {
         localStorage.setItem('aura_current_id', newRef.key);
+        alert(`Appointment booked successfully for ${name} on ${date} at ${selectedTimeSlot}!`);
+        bookedSlots.push(selectedTimeSlot);
+        renderTimeSlots();
         window.location.href = 'dashboard.html';
-      }).catch(error => {
-        alert("Error booking appointment: " + error.message);
-      });
+      }).catch(err => alert("Error saving appointment: " + err.message));
     }
 
     window.onload = function() {
       switchStyleTab('cuts');
-      calculateTotal();
+      calculateEstimate();
+      document.getElementById('appointmentDate').value = new Date().toISOString().split('T')[0];
+      renderTimeSlots();
     };
   </script>
 </body>
