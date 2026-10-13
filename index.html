@@ -166,8 +166,8 @@
         { name: "S-Curl Perm", img: "images/s-curl-perm.jpg" },
         { name: "Jelly Perm", img: "images/jelly-perm.jpg" },
         { name: "Hippie Perm", img: "images/hippie-perm.jpg" },
-        { name: "Volume Perm", img: "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=400&q=80" },
-        { name: "Korean Perm", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" }
+        { name: "Volume Perm", img: "images/volume-perm.jpg" },
+        { name: "Korean Perm", img: "images/korean-perm.jpg" }
       ],
       colors: [
         { name: "Natural Black", img: "images/natural-black.jpg" },
@@ -207,7 +207,7 @@
       container.innerHTML = styleData[tabKey].map((item, index) => `
         <div class="bg-darkCard border border-darkBorder rounded-xl overflow-hidden hover:border-brandGold/60 transition group cursor-pointer shadow-lg">
           <div class="w-full h-32 bg-darkBg relative overflow-hidden">
-            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='images/hair-colors-chart.png'">
+            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='https://via.placeholder.com/150?text=AURA'">
             <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-brandGold font-serif text-xs font-bold px-2 py-0.5 rounded border border-brandGold/30">
               #${index + 1}
             </span>
@@ -267,7 +267,6 @@
       });
     }
 
-    // Run immediately on load
     window.onload = function() {
       switchStyleTab('cuts');
       calculateTotal();
