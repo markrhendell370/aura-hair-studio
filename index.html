@@ -42,7 +42,7 @@
     </p>
   </header>
 
-  <!-- Section 1: Hair Styles & Catalog Showcase -->
+  <!-- Section 1: Visual Hair Styles & Catalog Showcase -->
   <section id="styles" class="max-w-7xl mx-auto py-8 px-4">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
       <div>
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Dynamic Grid Container -->
-    <div id="catalogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
+    <div id="catalogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
   </section>
 
   <!-- Section 2: Interactive Pricing & Slot Availability Booking System -->
@@ -143,7 +143,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <script>
-    // 1. Fixed Firebase Initialization
     const firebaseConfig = {
       apiKey: "AIzaSyBUwARR2QRgd-NOhuLJPBKXSzmq-Rt9cd8",
       authDomain: "aura-hair-studio-a13e1.firebaseapp.com",
@@ -158,23 +157,63 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // 2. Full Catalog Data Lists
+    // Visual Images + Names Data Catalog
     const styleData = {
       cuts: [
-        "Two-Block Cut", "Textured Crop", "Wolf Cut", "Layered Cut", "Butterfly Cut",
-        "Bob Cut", "Low Taper Fade", "Hush Cut", "Undercut", "Crew Cut",
-        "Buzz Cut", "Pixie Cut", "Shag Cut", "Korean Cut", "French Crop"
+        { name: "Two-Block Cut", img: "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=400&q=80" },
+        { name: "Textured Crop", img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=80" },
+        { name: "Wolf Cut", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" },
+        { name: "Layered Cut", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" },
+        { name: "Butterfly Cut", img: "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=400&q=80" },
+        { name: "Bob Cut", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" },
+        { name: "Low Taper Fade", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80" },
+        { name: "Hush Cut", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
+        { name: "Undercut", img: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" },
+        { name: "Crew Cut", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
+        { name: "Buzz Cut", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" },
+        { name: "Pixie Cut", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" },
+        { name: "Shag Cut", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" },
+        { name: "Korean Cut", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80" },
+        { name: "French Crop", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" }
       ],
       perms: [
-        "Down Perm", "Shadow Perm", "Comma Perm", "Wave Perm", "Curly Perm",
-        "Digital Perm", "Body Wave Perm", "Root Volume Perm", "Spiral Perm", "C-Curl Perm",
-        "S-Curl Perm", "Jelly Perm", "Hippie Perm", "Volume Perm", "Korean Perm"
+        { name: "Down Perm", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
+        { name: "Shadow Perm", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" },
+        { name: "Comma Perm", img: "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=400&q=80" },
+        { name: "Wave Perm", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" },
+        { name: "Curly Perm", img: "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=400&q=80" },
+        { name: "Digital Perm", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" },
+        { name: "Body Wave Perm", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" },
+        { name: "Root Volume Perm", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" },
+        { name: "Spiral Perm", img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=80" },
+        { name: "C-Curl Perm", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80" },
+        { name: "S-Curl Perm", img: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" },
+        { name: "Jelly Perm", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
+        { name: "Hippie Perm", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" },
+        { name: "Volume Perm", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80" },
+        { name: "Korean Perm", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" }
       ],
       colors: [
-        "Natural Black", "Chocolate Brown", "Ash Brown", "Ash Gray", "Milk Tea Brown",
-        "Burgundy Red", "Blue Black", "Caramel Brown", "Ash Blonde", "Golden Brown",
-        "Mocha Brown", "Copper Brown", "Platinum Blonde", "Pastel Pink", "Smoky Gray",
-        "Beige Blonde", "Rose Brown", "Cherry Red", "Mushroom Brown", "Honey Blonde"
+        { name: "Natural Black", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" },
+        { name: "Chocolate Brown", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" },
+        { name: "Ash Brown", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
+        { name: "Ash Gray", img: "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=400&q=80" },
+        { name: "Milk Tea Brown", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" },
+        { name: "Burgundy Red", img: "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=400&q=80" },
+        { name: "Blue Black", img: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" },
+        { name: "Caramel Brown", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" },
+        { name: "Ash Blonde", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" },
+        { name: "Golden Brown", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" },
+        { name: "Mocha Brown", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80" },
+        { name: "Copper Brown", img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=80" },
+        { name: "Platinum Blonde", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
+        { name: "Pastel Pink", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80" },
+        { name: "Smoky Gray", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
+        { name: "Beige Blonde", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" },
+        { name: "Rose Brown", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
+        { name: "Cherry Red", img: "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=400&q=80" },
+        { name: "Mushroom Brown", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" },
+        { name: "Honey Blonde", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" }
       ]
     };
 
@@ -193,12 +232,17 @@
 
       const container = document.getElementById('catalogGrid');
       container.innerHTML = styleData[tabKey].map((item, index) => `
-        <div class="bg-darkCard border border-darkBorder rounded-xl p-3.5 hover:border-brandGold/60 transition group cursor-pointer">
-          <div class="w-full h-24 bg-darkBg rounded-lg flex items-center justify-center font-serif font-bold text-brandGold/40 group-hover:text-brandGold transition text-xl mb-2.5">
-            ${index + 1}
+        <div class="bg-darkCard border border-darkBorder rounded-xl overflow-hidden hover:border-brandGold/60 transition group cursor-pointer shadow-lg">
+          <div class="w-full h-32 bg-darkBg relative overflow-hidden">
+            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-80 group-hover:opacity-100">
+            <span class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-brandGold font-serif text-xs font-bold px-2 py-0.5 rounded border border-brandGold/30">
+              #${index + 1}
+            </span>
           </div>
-          <h4 class="text-xs font-semibold text-white truncate">${item}</h4>
-          <span class="text-[10px] text-gray-500 uppercase tracking-wider block mt-0.5">${tabKey.slice(0, -1)}</span>
+          <div class="p-3">
+            <h4 class="text-xs font-semibold text-white truncate">${item.name}</h4>
+            <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-0.5">${tabKey.slice(0, -1)}</span>
+          </div>
         </div>
       `).join('');
     }
