@@ -157,24 +157,24 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // 15 Haircuts, 15 Perms, 20 Hair Colors mapped to direct preview images
+    // 15 Haircuts with local image paths, 15 Perms, 20 Hair Colors
     const styleData = {
       cuts: [
-        { name: "Two-Block Cut", img: "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=400&q=80" },
-        { name: "Textured Crop", img: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=80" },
-        { name: "Wolf Cut", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" },
-        { name: "Layered Cut", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" },
-        { name: "Butterfly Cut", img: "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=400&q=80" },
-        { name: "Bob Cut", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" },
-        { name: "Low Taper Fade", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80" },
-        { name: "Hush Cut", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
-        { name: "Undercut", img: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" },
-        { name: "Crew Cut", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
-        { name: "Buzz Cut", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" },
-        { name: "Pixie Cut", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" },
-        { name: "Shag Cut", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" },
-        { name: "Korean Cut", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80" },
-        { name: "French Crop", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" }
+        { name: "Two-Block Cut", img: "images/two-block.jpg" },
+        { name: "Textured Crop", img: "images/textured-crop.jpg" },
+        { name: "Wolf Cut", img: "images/wolf-cut.jpg" },
+        { name: "Layered Cut", img: "images/layered-cut.jpg" },
+        { name: "Butterfly Cut", img: "images/butterfly-cut.jpg" },
+        { name: "Bob Cut", img: "images/bob-cut.jpg" },
+        { name: "Low Taper Fade", img: "images/low-taper-fade.jpg" },
+        { name: "Hush Cut", img: "images/hush-cut.jpg" },
+        { name: "Undercut", img: "images/undercut.jpg" },
+        { name: "Crew Cut", img: "images/crew-cut.jpg" },
+        { name: "Buzz Cut", img: "images/buzz-cut.jpg" },
+        { name: "Pixie Cut", img: "images/pixie-cut.jpg" },
+        { name: "Shag Cut", img: "images/shag-cut.jpg" },
+        { name: "Korean Cut", img: "images/korean-cut.jpg" },
+        { name: "French Crop", img: "images/french-crop.jpg" }
       ],
       perms: [
         { name: "Down Perm", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" },
